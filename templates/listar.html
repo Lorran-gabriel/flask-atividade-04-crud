@@ -1,0 +1,25 @@
+<!doctype html>
+<title>Listar Produtos</title>
+<h1>Lista de Produtos (API CRUD Completa)</h1>
+
+<p><a href="{{ url_for('cadastrar') }}">Cadastrar Novo Produto</a></p>
+
+{% if regs %}
+    <table border="1">
+        <tr><th>ID</th><th>Descrição</th><th>Preço Compra</th><th>Preço Venda</th><th>Data Criação</th><th>Ações</th></tr>
+        {% for reg in regs %}
+        <tr>
+            <td>{{ reg[0] }}</td><td>{{ reg[1] }}</td><td>R$ {{ "%.2f"|format(reg[2]) }}</td><td>R$ {{ "%.2f"|format(reg[3]) }}</td><td>R$ {{ "%.2f"|format(reg[3]) }}</td><td>{{ reg[4] }}</td>
+            <td>
+                <a href="{{ url_for('alterar', idproduto=reg[0]) }}">Alterar</a>
+                <form method="post" action="{{ url_for('excluir', idproduto=reg[0]) }}" 
+                      style="display: inline;" onsubmit="return confirm('Tem certeza que deseja excluir o ID {{ reg[0] }}?');">
+                    <input type="submit" value="Excluir" style="color: red; cursor: pointer;">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>Nenhum produto cadastrado.</p>
+{% endif %}

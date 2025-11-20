@@ -1,0 +1,15 @@
+<!doctype html>
+<title>Cadastrar Produto</title>
+<h1>Cadastrar Novo Produto</h1>
+
+{% if mensagem %}
+    <p style="color: green;">{{ mensagem }}</p>
+{% endif %}
+
+<form method="post" action="{{ url_for('cadastrar') }}">
+    <p><label for="descricao">Descrição:</label><br><input type="text" name="descricao" required></p>
+    <p><label for="precocompra">Preço de Compra:</label><br><input type="number" step="0.01" name="precocompra" required></p>
+    <p><label for="precovenda">Preço de Venda:</label><br><input type="number" step="0.01" name="precovenda" required></p>
+    <p><input type="submit" value="Cadastrar Produto"></p>
+</form>
+<p><a href="{{ url_for('listar') }}">Ver Lista de Produtos</a></p>
